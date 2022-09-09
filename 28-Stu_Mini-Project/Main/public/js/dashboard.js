@@ -1,27 +1,27 @@
-const newFormHandler = async (event) => {
-  event.preventDefault();
+// const newFormHandler = async (event) => {
+//   event.preventDefault();
 
-  const title = document.querySelector('#post-title').value.trim();
-  console.log(title);
-  const postText = document.querySelector('#post-text').value.trim();
-  console.log(postText);
+//   const title = document.querySelector('#post-title').value.trim();
+//   console.log(title);
+//   const postText = document.querySelector('#post-text').value.trim();
+//   console.log(postText);
 
-  if (title && postText) {
-    const response = await fetch(`/api/posts`, {
-      method: 'POST',
-      body: JSON.stringify({title, postText}),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+//   if (title && postText) {
+//     const response = await fetch(`/api/posts`, {
+//       method: 'POST',
+//       body: JSON.stringify({title, postText}),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     });
 
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to create post');
-    }
-  }
-};
+//     if (response.ok) {
+//       document.location.replace('/dashboard');
+//     } else {
+//       alert('Failed to create post');
+//     }
+//   }
+// };
 
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
@@ -39,13 +39,13 @@ const delButtonHandler = async (event) => {
   }
 };
 
-// const newPostButtonHandler = async (event) => {
-//   event.preventDefault();
-//   document.location.replace('/newpost');
-// };
+const newPostButtonHandler = async (event) => {
+  event.preventDefault();
+  document.location.replace('/newpost');
+};
 
-document.querySelector('#new-post-form').addEventListener('submit', newFormHandler);
+// document.querySelector('#new-post-form').addEventListener('submit', newFormHandler);
 
+
+document.querySelector('#new-post-button').addEventListener('click', newPostButtonHandler);
 document.querySelector('#post-list').addEventListener('click', delButtonHandler);
-
-// document.querySelector('#new-post-button').addEventListener('submit',newPostButtonHandler);
