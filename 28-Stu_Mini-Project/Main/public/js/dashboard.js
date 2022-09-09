@@ -39,6 +39,13 @@ const delButtonHandler = async (event) => {
   }
 };
 
+// const newPostButtonHandler = async (event) => {
+//   event.preventDefault();
+//   document.location.replace('/newpost');
+// };
+
 document.querySelector('#new-post-form').addEventListener('submit', newFormHandler);
 
 document.querySelector('#post-list').addEventListener('click', delButtonHandler);
+
+// document.querySelector('#new-post-button').addEventListener('submit',newPostButtonHandler);
