@@ -34,6 +34,7 @@ router.get('/newpost', (req, res) => {
   });
 });
 
+
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -62,6 +63,30 @@ router.get('/post/:id', async (req, res) => {
     });
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+router.get("/updatepost/:id", withAuth, async (req, res) => {
+  try {
+      const updatePostData = await Post.findOne({
+          where: {
+              id: req.params.id,
+              userId: req.session.userId
+          }
+      });
+
+      if (!updatePostData) {
+          res.status(404).json({ message: "You cannot update this post." });
+          return;
+      };
+
+      const updatePost = updatePostData.get({ plain: true });
+      res.render("updatepost", {
+          ...updatePost,
+          logged_in: true
+      });
+  } catch (err) {
+      res.status(500).json(err)
   }
 });
 
