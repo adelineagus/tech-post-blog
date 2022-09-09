@@ -1,10 +1,10 @@
 <div class="text-center">
   <h2>{{title}}</h2>
 
-  
+
   <p>{{postText}}</p>
   <p>Created by {{user.email}} on {{format_date date_created}}</p>
-
+  {{#if logged_in}}
   <div class="col-md-4">
         <button id= "delete-post" class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
   </div>
@@ -12,6 +12,7 @@
       <h4><a href="/updatepost/{{id}}">update post</a></h4>
   </div>
 </div>
+{{/if}}
 
 
 
@@ -32,6 +33,7 @@
 {{/if}}
 <div>
 
+{{#if logged_in}}
 <div class="row mt-4">
   <div class="col-md-6">
     <h3>Create a New Comment:</h3>
@@ -46,6 +48,7 @@
       </div>
     </form>
   </div>
+  {{/if}}
 
 
 <script src="/js/comment.js"></script>

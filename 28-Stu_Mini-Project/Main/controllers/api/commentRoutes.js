@@ -20,9 +20,9 @@ router.get("/", async (req, res) => {
     } catch (err) {
         res.status(500).json(err); 
     }
-})
-//add withAuth
-router.post("/", async (req, res) => {
+});
+
+router.post("/", withAuth, async (req, res) => {
      try {
         const newComment = await Comment.create({
             ...req.body,

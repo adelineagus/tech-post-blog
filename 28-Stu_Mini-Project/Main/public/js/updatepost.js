@@ -17,7 +17,7 @@ const updatePostHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace(`/post/${id}`);
+        document.location.replace(`/dashboard`);
       } else {
         alert('Failed to edit post');
       }

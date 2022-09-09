@@ -27,8 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-//add withAuth
-router.get('/newpost', (req, res) => {
+router.get('/newpost', withAuth, (req, res) => {
   res.render('newpost', {
       logged_in:true
   });
