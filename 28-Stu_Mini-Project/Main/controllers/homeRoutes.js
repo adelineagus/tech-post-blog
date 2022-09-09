@@ -40,11 +40,12 @@ router.get('/post/:id', async (req, res) => {
       include: [
         {
           model: Comment,
-          // include:[
-          //   {
-          //   model: User,
-          //   //attributes: ['title'],
-          //   }
+          include:[
+            {
+            model: User,
+            //attributes: ['title'],
+            }
+          ]
         },
         {
           model: User,
@@ -92,6 +93,10 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  res.render('signup');
 });
 
 module.exports = router;
