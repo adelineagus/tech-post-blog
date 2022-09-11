@@ -9,21 +9,26 @@ const {post} = require('../controllers/homeRoutes')
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
+  //create users
   const users = await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
   });
 
+  //create post of each posts
   for (const post of postData) {
     await Post.create({
       ...post,
+      //assign random user id
       userId: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 
+  //create comment for each comments
   for (const comment of commentData) {
     await Comment.create({
       ...comment,
+      //assign random user ID
       userId: users[Math.floor(Math.random() * users.length)].id,
     });
   }

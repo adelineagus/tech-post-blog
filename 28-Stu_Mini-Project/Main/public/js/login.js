@@ -1,7 +1,8 @@
 const loginForm = async(event)=>{
     event.preventDefault();
-
+    //grab user input on email
     const email= document.querySelector('#email_login').value.trim();
+    //grab user input on password
     const password= document.querySelector('#password_login').value.trim();
 
     if(email && password){
@@ -11,6 +12,7 @@ const loginForm = async(event)=>{
             headers: {'Content-Type': 'application/json'},
         });
 
+        //if respponse is ok, redirect page to dashboard
         if(response.ok){
             document.location.replace('/dashboard');
         } else{
@@ -19,27 +21,4 @@ const loginForm = async(event)=>{
     }
 };
 
-// const signupForm= async(event)=>{
-//     event.preventDefault();
-  
-//     const email= document.querySelector('#email_signup').value.trim();
-//     const password= document.querySelector('#password_signup').value.trim();
-
-//     if(email && password){
-
-//         const response= await fetch('/api/users/',{
-//             method: 'POST',
-//             body:JSON.stringify({email, password}),
-//             headers: {'Content-Type': 'application/json'},
-//         });
-
-//         if(response.ok){
-//             document.location.replace('/dashboard');
-//         } else{
-//             alert(response.statusText);
-//         }
-//     }
-// };
-
 document.querySelector('#login_form').addEventListener('submit', loginForm);
-// document.querySelector('#signup_form').addEventListener('submit', signupForm);

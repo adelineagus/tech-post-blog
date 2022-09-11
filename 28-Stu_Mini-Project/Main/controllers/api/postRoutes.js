@@ -1,7 +1,8 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
+const { User, Post } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+//get all post
 router.get("/", async (req, res) => {
     try {
         const allPostData = await Post.findAll({
@@ -11,7 +12,6 @@ router.get("/", async (req, res) => {
             },
             ]
         }); 
-
         const allPosts = allPostData.map((post) => post.get({ plain: true }));
         res.json(allPosts);
     } catch (err) {
@@ -19,17 +19,17 @@ router.get("/", async (req, res) => {
     }
 })
 
+//get post with certain id
 router.get("/:id", async (req, res) => {
     try {
-        const onePostData = await Post.findByPk(req.params.id,{
-        }); 
+        const onePostData = await Post.findByPk(req.params.id); 
         res.json(onePostData); 
     } catch (err) {
         res.status(500).json(err);
     }
 })
 
-
+//post new post only when logged in
 router.post("/", withAuth, async (req, res) => {
     try {
         const newPost = await Post.create({
@@ -42,6 +42,7 @@ router.post("/", withAuth, async (req, res) => {
     }
 });
 
+//delete a post by its id and only when logged in
 router.delete("/:id", withAuth, async (req, res) => {
     try {
         const deletedPost = await Post.destroy({
@@ -50,7 +51,6 @@ router.delete("/:id", withAuth, async (req, res) => {
                 userId: req.session.userId
             },
         });
-
         if (!deletedPost) {
             res.status(404).json({ message: "No post found with this ID." });
             return;
@@ -61,6 +61,8 @@ router.delete("/:id", withAuth, async (req, res) => {
     }
 })
 
+
+//update post by its id and only when logged in
 router.put("/:id", withAuth, async (req, res) => {
     try {
         const updatedPost = await Post.update({
@@ -73,13 +75,11 @@ router.put("/:id", withAuth, async (req, res) => {
                     userId: req.session.userId
                 }
             });
-
         if (!updatedPost) {
             res.status(404).json({ message: "No post found with this ID." });
             return;
         };
         res.status(200).json(updatedPost);
-
     } catch (err) {
         res.status(500).json(err);
     }
