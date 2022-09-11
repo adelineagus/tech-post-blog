@@ -22,3 +22,25 @@ header, .post:not(:last-child) {
   font-weight: bold;
   margin-left: -5px;
 }
+
+#comment-list {
+  border-style: solid;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-aligned{
+  display: inline-flex;
+  gap: 10px;
+  /* justify-content: left;
+  align-items: left;
+} */
+}
+
+#update-post{
+  color: red;
+}

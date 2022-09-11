@@ -1,32 +1,37 @@
 <div class="text-center">
   <h2>{{title}}</h2>
 
+  {{!-- {{#if logged_in}}
+  <div class="left-aligned">
+        <button id= "delete-post" class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+        <h4><a href="/updatepost/{{id}}">update post</a></h4>
+  </div>
+  {{/if}} --}}
 
   <p>{{postText}}</p>
   <p>Created by {{user.email}} on {{format_date date_created}}</p>
+
   {{#if logged_in}}
-  <div class="col-md-4">
+  <div class="left-aligned">
         <button id= "delete-post" class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+        <h4 id="update-post"><a href="/updatepost/{{id}}">update post</a></h4>
   </div>
-    <div class="col-md-4">
-      <h4><a href="/updatepost/{{id}}">update post</a></h4>
-  </div>
+  {{/if}}
 </div>
-{{/if}}
 
 
 
 {{#if comments.length}}
-  <div class="col-md-6" id="post-list">
-    <h3>Current comments:</h3>
+  <div class= "comment-border" id="comment-list">
+    <p>Current comments:</p>
 
     {{#each comments as |comment|}}
-    <div class="row mb-2">
+    <div>
       <p>
         {{comment.commentText}}
+        <br>
+        Created by {{user.email}} on {{format_date date_created}}
       </p>
-
-      <p>Created by {{user.email}} on {{format_date date_created}}</p>
     </div>
     {{/each}}
   </div>
