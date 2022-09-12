@@ -77,7 +77,7 @@ router.get("/updatepost/:id", withAuth, async (req, res) => {
           }
       });
       if (!updatePostData) {
-          res.status(404).json({ message: "You cannot update this post." });
+          res.status(404).json({ message: "You cannot update this post. Only post creator who can update this post" });
           return;
       };
       const updatePost = updatePostData.get({ plain: true });
@@ -115,12 +115,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
 //route to login
 router.get('/login', (req, res) => {
-  //if already loggedin, route to dashboard
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
-
   //render login template
   res.render('login');
 });

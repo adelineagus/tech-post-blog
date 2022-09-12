@@ -4,7 +4,7 @@
     "postText": "MVC allows developers to maintain a true separation of concerns devising their code between the Model layer of data, the View layer for design, and the Controller layer for application logic."
   },
   {
-    "title": "Authentication vs. Authroization",
+    "title": "Authentication vs. Authorization",
     "postText": "There is a difference between authentication and authorization. Authentication means confirming your own identity whereas authorization means being allowed access to the system."
   },
   {
